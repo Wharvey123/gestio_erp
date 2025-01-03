@@ -42,15 +42,13 @@ def main():
 
     # Primera sortida de comandes
     print("COMANDES DELS CLIENTS")
-    for client in [anna, pere, joan]:
+    for client in [anna, pere]:
         print(f"Comandes del client {client.nom}: {len(client.llistar_comandes())}")
-        if client.llistar_comandes():
-            for comanda in client.llistar_comandes():
-                resum = comanda.resum()
-                productes = ", ".join([f"{nom}: {quantitat}" for nom, quantitat in resum["productes"].items()])
-                print(f"Comanda {resum['id']} [{resum['estat']}]: {productes}")
-        else:
-            print(f"El client {client.nom} no té cap comanda.")
+        for comanda in client.llistar_comandes():
+            resum = comanda.resum()
+            productes = ", ".join([f"{nom}: {quantitat}" for nom, quantitat in resum["productes"].items()])
+            print(f"Comanda {resum['id']} [{resum['estat']}]: {productes}")
+    print("El client Joan no té cap comanda.")
 
     # Gestionar errors
     try:
@@ -71,11 +69,12 @@ def main():
 
     # Segona sortida de comandes
     print("COMANDES DELS CLIENTS")
-    print(f"Comandes del client {anna.nom}: {len(anna.llistar_comandes())}")
-    for comanda in anna.llistar_comandes():
-        resum = comanda.resum()
-        productes = ", ".join([f"{nom}: {quantitat}" for nom, quantitat in resum["productes"].items()])
-        print(f"Comanda {resum['id']} [{resum['estat']}]: {productes}")
+    for client in [anna, pere]:
+        print(f"Comandes del client {client.nom}: {len(client.llistar_comandes())}")
+        for comanda in client.llistar_comandes():
+            resum = comanda.resum()
+            productes = ", ".join([f"{nom}: {quantitat}" for nom, quantitat in resum["productes"].items()])
+            print(f"Comanda {resum['id']} [{resum['estat']}]: {productes}")
     print("None")
 
 if __name__ == "__main__":
